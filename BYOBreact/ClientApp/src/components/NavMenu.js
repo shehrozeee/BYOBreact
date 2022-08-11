@@ -39,7 +39,7 @@ export class NavMenu extends Component {
                             <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                             </NavItem> <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/BYOB">BYOB</NavLink>
+                                <NavLink tag={Link} className="text-dark" to="/byob">BYOB</NavLink>
                             </NavItem>
               </ul>
             </Collapse>
