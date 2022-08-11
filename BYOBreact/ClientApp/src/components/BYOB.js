@@ -21,10 +21,11 @@ export class BYOB extends Component {
         <h1>Build Your Own Burger</h1>
 
         <p>This is a simple example of a BYOB component.</p>
+        <p>This is a not so simple example of a BYOB component.</p>
 
         <p aria-live="polite">Current Burgers: <strong>{this.state.currentCount}</strong></p>
 
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
+        <button className="btn btn-primary" onClick={this.incrementCounter}>Aik Aur!</button>
       </div>
     );
   }
