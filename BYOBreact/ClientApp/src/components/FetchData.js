@@ -53,7 +53,11 @@ export class FetchData extends Component {
 
   async populateWeatherData() {
     const response = await fetch('weatherforecast');
-    const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
-  }
+      const data = await response.json();
+      this.setState({ forecasts: data, loading: false });
+      const response2 = await fetch('api/Burger/MakeBurger');
+      const data2 = await response2.text();
+      console.log(data2);
+    }
+
 }
