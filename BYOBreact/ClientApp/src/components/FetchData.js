@@ -58,6 +58,9 @@ export class FetchData extends Component {
       const response2 = await fetch('api/Burger/MakeBurger');
       const data2 = await response2.text();
       console.log(data2);
+      const response3 = await fetch('api/Burger/GetBurgerItems');
+      const data3 = await response3.text();
+      console.log("data 3:", data3);
     }
 
 }

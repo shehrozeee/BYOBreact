@@ -4,13 +4,14 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public BurgerBun BurgerBun { get; set; }
-        public byte BurgerBunId { get; set; }
-        public Bread Bread { get; set; }
-        public byte BreadId { get; set; }
+        public BurgerMuffins BurgerMuffins { get; set; }
+        public int BurgerMuffinsId { get; set; }
         public Meat Meat { get; set; }
         public byte MeatId { get; set; }
         public Vegetables Vegetables { get; set; }
-        public byte MeatId { get; set; }
+        public int VegetablesId { get; set; }
+        public Sauces Sauces { get; set; }
+        public int SaucesId { get; set; }
+        public bool WithCheese { get; set; }
     }
 }

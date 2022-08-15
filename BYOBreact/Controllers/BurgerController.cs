@@ -1,4 +1,5 @@
 ﻿using BYOBreact.Model;
+using BYOBreact.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -11,22 +12,49 @@ namespace BYOBreact.Controllers
     
     public class BurgerController : ControllerBase
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public BurgerController()
         {
             _context = new ApplicationDbContext();
         }
-        //protected override void Dispose(bool disposing)
-        //{
-        //    _context.Dispose();
-        //}
 
         [HttpGet("MakeBurger")]
-        public string MakeBurger()
+        public BurgerViewModel MakeBurger()
         {
-            Guid guid = Guid.NewGuid();
-
-            return guid.ToString();
+            //Guid guid = Guid.NewGuid();
+            ////var a = 10;
+            ////var buns = _context.Bun.ToList();
+            //return _context.Bun;
+            var burgerMuffins = _context.BurgerMuffins.ToList();
+            var sauces = _context.Sauces.ToList();
+            var vegetables = _context.Vegetables.ToList();
+            var meat = _context.Meat.ToList();
+            var viewModel = new BurgerViewModel
+            {
+                Burger = new Burger(),
+                Vegetables = vegetables,
+                Meats = meat,
+                Sauces = sauces,
+                BurgerMuffins= burgerMuffins
+            };
+            return viewModel;
+        }
+        [HttpGet("GetBurgerItems")]
+        public BurgerViewModel GetBurgerItems()
+        {
+            var burgerMuffins = _context.BurgerMuffins.ToList();
+            var sauces = _context.Sauces.ToList();
+            var vegetables = _context.Vegetables.ToList();
+            var meat = _context.Meat.ToList();
+            var viewModel = new BurgerViewModel
+            {
+                Burger = new Burger(),
+                Vegetables = vegetables,
+                Meats = meat,
+                Sauces = sauces,
+                BurgerMuffins = burgerMuffins
+            };
+            return viewModel;
         }
     }
 }
