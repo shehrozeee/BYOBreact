@@ -10,7 +10,7 @@ export class BYOB extends Component {
         super(props);
         //this.state = { currentCount: 0 };
         //this.incrementCounter = this.incrementCounter.bind(this);
-        this.state = { viewModel: [], name: "manal" }
+        this.state = { viewModel: {meats:[],vegetables:[]}, name: "manal" }
     }
     componentDidMount() {
         this.populateBurgerData();
@@ -98,7 +98,7 @@ export class BYOB extends Component {
     async populateBurgerData() {
         const response = await fetch('api/Burger/GetBurgerItems');
         const data = await response.json();
-        this.setState({ viewModel: data });
+        this.setState({ viewModel: data ,name:"burger"});
         console.log("data view:", this.state.viewModel.meats[0].name)
         console.log("data:", data);
     }
