@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class BYOB extends Component {
@@ -10,19 +8,13 @@ export class BYOB extends Component {
         super(props);
         //this.state = { currentCount: 0 };
         //this.incrementCounter = this.incrementCounter.bind(this);
-        this.state = { viewModel: { meat: [], vegetables: [], sauces: [], burgerMuffins: [], Burger:[] } }
+        this.state = { viewModel: { meats: [], vegetables: [], sauces: [], burgerMuffins: [] } }
     }
     componentDidMount() {
         this.populateBurgerData();
     }
 
-    incrementCounter() {
-        this.setState({
-            currentCount: this.state.currentCount + 1
-        });
-
-        console.log(this.state.viewModel);
-    }
+    
 
     //render() {
     //    return (
@@ -63,7 +55,7 @@ export class BYOB extends Component {
     //    );
     //}
 
-    static renderForecastsTable(meat) {
+    static renderForecastsTable(meats) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
@@ -72,7 +64,7 @@ export class BYOB extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {meat.map(m =>
+                    {meats.map(m =>
                         <tr key={m.id}>
                             <td>{m.name}</td>
                         </tr>
@@ -84,7 +76,7 @@ export class BYOB extends Component {
 
     render() {
 
-        let contents = BYOB.renderForecastsTable(this.state.viewModel.meat);
+        let contents = BYOB.renderForecastsTable(this.state.viewModel.meats);
 
         return (
             <div>
@@ -98,7 +90,7 @@ export class BYOB extends Component {
     async populateBurgerData() {
         const response = await fetch('api/Burger/GetBurgerItems');
         const data = await response.json();
-        this.setState({ viewModel: data, meat: data.meats, vegetables: data.vegetables, sauces: data.sauces, burgerMuffins: data.burgerMuffins});
+        this.setState({ viewModel: data});
         console.log("data view:", this.state.viewModel.meats[0].name)
         console.log("data:", data);
     }
