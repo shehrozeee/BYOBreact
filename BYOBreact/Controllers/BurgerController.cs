@@ -39,6 +39,7 @@ namespace BYOBreact.Controllers
             };
             return viewModel;
         }
+
         [HttpGet("GetBurgerItems")]
         public BurgerViewModel GetBurgerItems()
         {
@@ -55,6 +56,13 @@ namespace BYOBreact.Controllers
                 BurgerMuffins = burgerMuffins
             };
             return viewModel;
+        }
+        [HttpPost("CustomerBurger")]
+        public void CustomerBurger(Burger burger)
+        {
+            Console.WriteLine("burger", burger);
+            _context.Burger.Add(burger);
+            _context.SaveChanges();
         }
     }
 }

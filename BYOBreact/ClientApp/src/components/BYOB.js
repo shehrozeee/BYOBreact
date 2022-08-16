@@ -8,18 +8,50 @@ export class BYOB extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { viewModel: { meats: [], vegetables: [], sauces: [], burgerMuffins: [] } }
+        this.state = {
+            viewModel: { meats: [], vegetables: [], sauces: [], burgerMuffins: [], Burger: { Name: '', BurgerMuffinsId: 0, MeatId: 0, VegetablesId: 0, SaucesId: 0, WithCheese: false } },
+            BurgerName: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleChange(event) {
+        this.setState({ BurgerName: event.target.value });
+        console.log("updatd", this.state.BurgerName);
+    }
+
+    handleSubmit(event) {
+        //alert('A name was submitted: ' + this.state.viewModel.Burger.Name);
+        alert('A name was submitted: ' + this.state.BurgerName);
+        event.preventDefault();
+    }
+
     componentDidMount() {
         this.populateBurgerData();
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+            
+           // body: JSON.stringify({ this.state.viewModel.Burger.Name: this.state.BurgerName })
+        };
+        fetch('api / Burger / CustomerBurger', requestOptions)
+            .then(response => response.json())
+            .then(data => this.setState({ postId: data.id }));
     }
 
     static renderForecastsTable(meats, burgerMuffins, sauces, vegetables) {
         return (
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     {/*<Form.Label>Burger Name</Form.Label>*/}
-                    <Form.Control type="text" placeholder="Enter your Burger Name" />
+                    <Form.Control value={this.state.BurgerName} onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />
+                    {/*<Form.Control onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />*/}
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="MeatOptions">
@@ -95,7 +127,7 @@ export class BYOB extends Component {
         const response = await fetch('api/Burger/GetBurgerItems');
         const data = await response.json();
         this.setState({ viewModel: data });
-        console.log("data view:", this.state.viewModel.meats[0].name)
-        console.log("data:", data);
+        //console.log("data view:", this.state.viewModel.meats[0].name)
+        //console.log("data:", data);
     }
 }
