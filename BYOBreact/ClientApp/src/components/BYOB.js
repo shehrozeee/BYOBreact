@@ -10,7 +10,7 @@ export class BYOB extends Component {
         super(props);
         this.state = {
             viewModel: { meats: [], vegetables: [], sauces: [], burgerMuffins: [], Burger: { Name: '', BurgerMuffinsId: 0, MeatId: 0, VegetablesId: 0, SaucesId: 0, WithCheese: false } },
-            BurgerName: ''
+            BurgerName: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -25,32 +25,34 @@ export class BYOB extends Component {
     handleSubmit(event) {
         //alert('A name was submitted: ' + this.state.viewModel.Burger.Name);
         alert('A name was submitted: ' + this.state.BurgerName);
+        console.log("yohoo");
         event.preventDefault();
     }
 
     componentDidMount() {
         this.populateBurgerData();
 
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title: 'React POST Request Example' })
+        //const requestOptions = {
+        //    method: 'POST',
+        //    headers: {
+        //        'Content-Type': 'application/json'
+        //    },
+        //    body: JSON.stringify({ title: 'React POST Request Example' })
             
-           // body: JSON.stringify({ this.state.viewModel.Burger.Name: this.state.BurgerName })
-        };
-        fetch('api / Burger / CustomerBurger', requestOptions)
-            .then(response => response.json())
-            .then(data => this.setState({ postId: data.id }));
+        //   // body: JSON.stringify({ this.state.viewModel.Burger.Name: this.state.BurgerName })
+        //};
+        //fetch('api / Burger / CustomerBurger', requestOptions)
+        //    .then(response => response.json())
+        //    .then(data => this.setState({ postId: data.id }));
     }
 
-    static renderForecastsTable(meats, burgerMuffins, sauces, vegetables) {
+    static renderForecastsTable(a,meats, burgerMuffins, sauces, vegetables) {
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     {/*<Form.Label>Burger Name</Form.Label>*/}
-                    <Form.Control value={this.state.BurgerName} onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />
+                    <Form.Control value={a} onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />
+                    {/*<Form.Control name={this.state.BurgerName} onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />*/}
                     {/*<Form.Control onChange={this.handleChange} type="text" placeholder="Enter your Burger Name" />*/}
                 </Form.Group>
 
@@ -112,8 +114,8 @@ export class BYOB extends Component {
     }
 
     render() {
-
-        let contents = BYOB.renderForecastsTable(this.state.viewModel.meats, this.state.viewModel.burgerMuffins, this.state.viewModel.sauces, this.state.viewModel.vegetables);
+        let a;
+        let contents = BYOB.renderForecastsTable(a,this.state.viewModel.meats, this.state.viewModel.burgerMuffins, this.state.viewModel.sauces, this.state.viewModel.vegetables);
 
         return (
             <div>
